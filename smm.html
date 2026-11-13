@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rojan Derosa, social media management</title>
+<meta name="description" content="Social media management by Rojan Derosa: Canva graphics, captions and scheduling, Reels, and replies to comments and DMs for Facebook, Instagram and LinkedIn.">
+<meta property="og:title" content="Rojan Derosa, social media management">
+<meta property="og:description" content="Canva graphics, captions and scheduling, Reels, and replies to comments and DMs for Facebook, Instagram and LinkedIn.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --board: #E9ECF1;   /* the editor pasteboard */
+    --paper: #FFFFFF;
+    --ink: #0B2545;
+    --body: #33425C;
+    --muted: #5A6780;
+    --line: #CBD3DF;
+    --select: #2563EB;  /* selection outline */
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--board); color: var(--body);
+    font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 16px; line-height: 1.65;
+  }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; }
+  h1, h2, h3, p, figure, dl, dd, ul { margin: 0; padding: 0; }
+  :focus-visible { outline: 3px solid var(--select); outline-offset: 3px; border-radius: 2px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
+  /* top bar */
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 22px; padding-bottom: 22px; }
+  .bar .name { font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+  .bar nav { display: flex; gap: 22px; font-size: 14.5px; font-weight: 500; }
+  .bar nav a { text-decoration: none; color: var(--ink); border-bottom: 1.5px solid transparent; padding-bottom: 1px; }
+  .bar nav a:hover { border-bottom-color: var(--ink); }
+
+  /* intro */
+  .intro { padding-top: 56px; padding-bottom: 64px; }
+  h1 {
+    color: var(--ink); font-weight: 700; letter-spacing: -0.03em; line-height: 1.04;
+    font-size: clamp(2.35rem, 6.6vw, 4.6rem);
+  }
+  h1 span { display: block; }
+  .intro p { font-size: 1.125rem; max-width: 58ch; margin-top: 26px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+  .btn {
+    display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 999px;
+    font-weight: 500; text-decoration: none; border: 1.5px solid var(--ink); color: var(--ink);
+  }
+  .btn.primary { background: var(--ink); color: #fff; }
+  .btn:hover { background: var(--select); border-color: var(--select); color: #fff; }
+
+  /* sample work */
+  h2 { color: var(--ink); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; font-size: clamp(1.6rem, 3.2vw, 2.1rem); }
+  .work-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: 12px 48px; align-items: end; padding-bottom: 8px; }
+  .work-head p { max-width: 56ch; }
+  .piece-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-top: 44px; }
+  h3 { color: var(--ink); font-weight: 700; font-size: 1.15rem; line-height: 1.3; letter-spacing: -0.01em; }
+  .piece-head p, .piece p { max-width: 62ch; margin-top: 4px; }
+  .format { color: var(--muted); font-size: 0.875rem; }
+
+  .nudge { display: flex; gap: 8px; flex: none; }
+  .nudge button {
+    width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--ink); background: transparent; color: var(--ink);
+    display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+  }
+  .nudge button:hover { background: var(--ink); color: #fff; }
+  .nudge svg { width: 18px; height: 18px; }
+
+  /* artboards: white pages on the pasteboard, labelled like editor pages */
+  .board-label { display: block; font-size: 0.8125rem; color: var(--muted); margin-bottom: 8px; font-weight: 500; }
+  .artboard { position: relative; display: block; background: var(--paper); box-shadow: 0 1px 2px rgba(11, 37, 69, .12), 0 10px 28px -14px rgba(11, 37, 69, .35); }
+  .artboard img { width: 100%; }
+  /* hover or focus "selects" the artboard, as in a design editor */
+  .artboard::after {
+    content: ""; position: absolute; inset: -2px; border: 2px solid var(--select); opacity: 0; pointer-events: none;
+    background:
+      linear-gradient(var(--paper), var(--paper)) top left / 8px 8px no-repeat,
+      linear-gradient(var(--paper), var(--paper)) top right / 8px 8px no-repeat,
+      linear-gradient(var(--paper), var(--paper)) bottom left / 8px 8px no-repeat,
+      linear-gradient(var(--paper), var(--paper)) bottom right / 8px 8px no-repeat;
+    background-origin: border-box; outline: 0;
+  }
+  .artboard::before {
+    content: ""; position: absolute; inset: -6px; pointer-events: none; opacity: 0; z-index: 1;
+    background:
+      linear-gradient(var(--select), var(--select)) top left / 10px 10px no-repeat,
+      linear-gradient(var(--select), var(--select)) top right / 10px 10px no-repeat,
+      linear-gradient(var(--select), var(--select)) bottom left / 10px 10px no-repeat,
+      linear-gradient(var(--select), var(--select)) bottom right / 10px 10px no-repeat;
+  }
+  .artboard:hover::after, .artboard:focus-visible::after,
+  .artboard:hover::before, .artboard:focus-visible::before { opacity: 1; }
+  .artboard:focus-visible { outline: none; }
+
+  .strip {
+    display: flex; gap: 28px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: thin;
+    padding: 22px max(28px, calc((100vw - 1120px) / 2 + 28px)) 30px;
+    scroll-padding-left: max(28px, calc((100vw - 1120px) / 2 + 28px));
+  }
+  .strip figure { flex: none; width: min(74vw, 336px); scroll-snap-align: start; }
+
+  .pair { display: flex; gap: 40px; align-items: flex-start; margin-top: 50px; }
+  .pair .piece.wide { flex: 1.7778 1 0; min-width: 0; }
+  .pair .piece.square { flex: 1 1 0; min-width: 0; }
+  .piece h3 { margin-top: 18px; }
+  .work { padding-bottom: 88px; }
+
+  /* info sheet */
+  .sheet { background: var(--paper); }
+  .row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr); gap: 20px 48px; padding: 68px 0; border-top: 1px solid var(--line); }
+  .row:first-child { border-top: 0; }
+  .handle { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px 48px; list-style: none; }
+  .handle p { margin-top: 6px; }
+  .roles { list-style: none; border-bottom: 1px solid var(--line); }
+  .roles li { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 4px 28px; padding: 18px 0; border-top: 1px solid var(--line); }
+  .roles li:first-child { border-top: 0; padding-top: 2px; }
+  .roles time { color: var(--muted); font-size: 0.9375rem; padding-top: 2px; }
+  .both { margin-top: 22px; max-width: 62ch; }
+  .kit { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 12px 28px; }
+  .kit dt { color: var(--muted); font-size: 0.9375rem; padding-top: 2px; }
+  .kit dd { color: var(--ink); font-weight: 500; }
+
+  /* contact */
+  .contact { background: var(--ink); color: #C9D4E6; padding: 84px 0 40px; }
+  .contact h2 { color: #fff; }
+  .contact p { margin-top: 12px; max-width: 52ch; }
+  .mail { display: inline-block; margin-top: 30px; color: #fff; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2;
+    font-size: clamp(1.35rem, 4.6vw, 2.9rem); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 8px; overflow-wrap: anywhere; }
+  .mail:hover { text-decoration-color: #7EA8FF; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 34px; list-style: none; font-weight: 500; }
+  .links a { color: #fff; }
+  .contact :focus-visible { outline-color: #9DBBFF; }
+  .fine { margin-top: 64px; padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, .18); font-size: 0.875rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+
+  @media (max-width: 820px) {
+    .intro { padding-top: 34px; padding-bottom: 48px; }
+    .work-head, .row { grid-template-columns: 1fr; }
+    .row { padding: 48px 0; }
+    .pair { flex-direction: column; gap: 44px; }
+    .pair .piece.wide, .pair .piece.square { flex: none; width: 100%; }
+    .handle { grid-template-columns: 1fr; gap: 26px; }
+    .roles li, .kit { grid-template-columns: 1fr; }
+    .kit dd { margin-bottom: 8px; }
+    .bar nav { gap: 16px; }
+  }
+  @media (max-width: 520px) {
+    .wrap { padding-left: 20px; padding-right: 20px; }
+    .strip { gap: 18px; padding-left: 20px; padding-right: 20px; scroll-padding-left: 20px; }
+    .nudge { display: none; }
+    .bar nav .hide-s { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header class="wrap bar">
+  <a class="name" href="#top">Rojan Derosa</a>
+  <nav aria-label="Page">
+    <a href="#work">Sample work</a>
+    <a class="hide-s" href="#handle">What I handle</a>
+    <a href="./">Main portfolio</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="wrap intro">
+    <h1><span>Posts designed,</span> <span>captions written,</span> <span>comments answered.</span></h1>
+    <p>I'm Rojan Derosa, a social media manager in Tacloban City, Philippines. I've run Facebook, Instagram and LinkedIn pages for a personal brand and for a coaching business, from the first Canva draft to the replies in the inbox.</p>
+    <div class="actions">
+      <a class="btn primary" href="mailto:rojanjw02@gmail.com">Email me</a>
+      <a class="btn" href="https://linkedin.com/in/rojan-derosa-935049253">Message me on LinkedIn</a>
+    </div>
+  </section>
+
+  <section class="work" id="work" aria-labelledby="work-h">
+    <div class="wrap work-head">
+      <h2 id="work-h">Sample work</h2>
+      <p>These are sample designs I made to show my style. They are not client posts, and the brands and listing details in them are examples.</p>
+    </div>
+
+    <div class="wrap piece-head">
+      <div>
+        <h3>Nurses are commercially underestimated</h3>
+        <p>An educational carousel for a healthcare leadership page. One idea per page, ending on an email sign-up.</p>
+        <p class="format">Carousel for Instagram or LinkedIn, 7 pages, 1080 × 1350</p>
+      </div>
+      <div class="nudge">
+        <button type="button" data-dir="-1" aria-label="Previous pages"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button type="button" data-dir="1" aria-label="Next pages"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+
+    <div class="strip" id="strip" tabindex="0" role="group" aria-label="Carousel pages, scroll sideways">
+      <figure><span class="board-label">Page 1</span><a class="artboard" href="smm-assets/carousel-1.jpg" target="_blank" rel="noopener"><img src="smm-assets/carousel-1.jpg" width="1080" height="1350" alt="Cover page: Nurses are commercially underestimated"></a></figure>
+      <figure><span class="board-label">Page 2</span><a class="artboard" href="smm-assets/carousel-2.jpg" target="_blank" rel="noopener"><img src="smm-assets/carousel-2.jpg" width="1080" height="1350" alt="Page 2: Leadership is a business skill"></a></figure>
+      <figure><span class="board-label">Page 3</span><a class="artboard" href="smm-assets/carousel-3.jpg" target="_blank" rel="noopener"><img src="smm-assets/carousel-3.jpg" width="1080" height="1350" loading="lazy" alt="Page 3: Healthcare trains service, not strategy"></a></figure>
+      <figure><span class="board-label">Page 4</span><a class="artboard" href="smm-assets/carousel-4.jpg" target="_blank" rel="noopener"><img src="smm-assets/carousel-4.jpg" width="1080" height="1350" loading="lazy" alt="Page 4: Your skills already transfer"></a></figure>
+      <figure><span class="board-label">Page 5</span><a class="artboard" href="smm-assets/carousel-5.jpg" target="_blank" rel="noopener"><img src="smm-assets/carousel-5.jpg" width="1080" height="1350" loading="lazy" alt="Page 5: Clinical credibility matters"></a></figure>
+      <figure><span class="board-label">Page 6</span><a class="artboard" href="smm-assets/carousel-6.jpg" target="_blank" rel="noopener"><img src="smm-assets/carousel-6.jpg" width="1080" height="1350" loading="lazy" alt="Page 6: Visibility changes opportunities"></a></figure>
+      <figure><span class="board-label">Page 7</span><a class="artboard" href="smm-assets/carousel-7.jpg" target="_blank" rel="noopener"><img src="smm-assets/carousel-7.jpg" width="1080" height="1350" loading="lazy" alt="Last page: Build beyond your salary, with a Join now button"></a></figure>
+    </div>
+
+    <div class="wrap pair">
+      <div class="piece wide">
+        <span class="board-label">Banner, 1920 × 1080</span>
+        <a class="artboard" href="smm-assets/taxi-banner.jpg" target="_blank" rel="noopener"><img src="smm-assets/taxi-banner.jpg" width="1600" height="900" loading="lazy" alt="Banner for a Tacloban tourist transport service with the headline Where will you go next and three destination photos"></a>
+        <h3>Where will you go next?</h3>
+        <p>A wide banner for a tourist transport service in Tacloban. Services on the left, three destinations on the right, and one Book now button.</p>
+      </div>
+      <div class="piece square">
+        <span class="board-label">Square post, 1080 × 1080</span>
+        <a class="artboard" href="smm-assets/just-listed.jpg" target="_blank" rel="noopener"><img src="smm-assets/just-listed.jpg" width="1080" height="1080" loading="lazy" alt="Just listed real estate post showing a white house with the address, beds, baths and price"></a>
+        <h3>Just listed</h3>
+        <p>A listing announcement for a real estate page. The photo comes first, then the address, beds, baths and price on one line.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="sheet">
+    <div class="wrap">
+      <section class="row" id="handle" aria-labelledby="handle-h">
+        <h2 id="handle-h">What I handle</h2>
+        <ul class="handle">
+          <li><h3>Graphics in Canva</h3><p>Single posts, carousels, covers and banners, sized for each platform.</p></li>
+          <li><h3>Captions and scheduling</h3><p>A caption written for every post, then planned and scheduled so the page doesn't go quiet.</p></li>
+          <li><h3>Reels and short videos</h3><p>Simple cuts with text and music, edited in CapCut.</p></li>
+          <li><h3>Comments and DMs</h3><p>Replies to comments and messages. I've also worked with ManyChat for chat automation.</p></li>
+        </ul>
+      </section>
+
+      <section class="row" aria-labelledby="where-h">
+        <h2 id="where-h">Where I've done it</h2>
+        <div>
+          <ul class="roles">
+            <li><time>April to June 2026</time><div><h3>Linda</h3><p>Social media management for her personal brand.</p></div></li>
+            <li><time>October 2024 to January 2025</time><div><h3>Workwise Coach</h3><p>Social media management for an HR coaching business.</p></div></li>
+          </ul>
+          <p class="both">In both roles I made the graphics in Canva, wrote the captions and scheduled the posts, edited Reels and short videos, and replied to comments and DMs.</p>
+        </div>
+      </section>
+
+      <section class="row" aria-labelledby="kit-h">
+        <h2 id="kit-h">Platforms and tools</h2>
+        <dl class="kit">
+          <dt>Platforms</dt><dd>Facebook, Instagram, LinkedIn</dd>
+          <dt>Tools</dt><dd>Canva, ManyChat, CapCut</dd>
+          <dt>Based in</dt><dd>Tacloban City, Philippines (UTC+8)</dd>
+        </dl>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer class="contact" id="contact">
+  <div class="wrap">
+    <h2>Need someone to run your page?</h2>
+    <p>Tell me which platforms you're on and how often you want to post. I'll reply with what I can take on.</p>
+    <a class="mail" href="mailto:rojanjw02@gmail.com">rojanjw02@gmail.com</a>
+    <ul class="links">
+      <li><a href="https://linkedin.com/in/rojan-derosa-935049253">LinkedIn</a></li>
+      <li><a href="https://github.com/Rojan2003">GitHub</a></li>
+      <li><a href="./">Main portfolio</a></li>
+    </ul>
+    <div class="fine"><span>Rojan Derosa, 2026</span><span>Sample designs on this page are my own work and are not client posts.</span></div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var strip = document.getElementById('strip');
+    if (!strip) return;
+    document.querySelectorAll('.nudge button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var first = strip.querySelector('figure');
+        var step = first ? first.getBoundingClientRect().width + 28 : 360;
+        var smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        strip.scrollBy({ left: Number(b.dataset.dir) * step * 2, behavior: smooth ? 'smooth' : 'auto' });
+      });
+    });
+  })();
+</script>
+</body>
+</html>
