@@ -70,8 +70,8 @@
   dlg.setAttribute('aria-label', 'Image viewer');
   dlg.innerHTML =
     '<figure class="lb-figure">' +
-      '<img class="lb-img" alt="">' +
-      '<figcaption class="lb-cap" aria-live="polite"><span class="lb-title"></span><span class="lb-note"></span></figcaption>' +
+      '<div class="lb-scroll"><img class="lb-img" alt=""></div>' +
+      '<figcaption class="lb-cap" aria-live="polite"><span class="lb-title"></span><span class="lb-note"></span><span class="lb-hint" hidden>Slide the picture sideways to see all of it.</span></figcaption>' +
     '</figure>' +
     '<button type="button" class="lb-btn lb-prev" aria-label="Previous image">' + ICON_PREV + '</button>' +
     '<button type="button" class="lb-btn lb-next" aria-label="Next image">' + ICON_NEXT + '</button>' +
@@ -81,6 +81,8 @@
   var img = dlg.querySelector('.lb-img');
   var title = dlg.querySelector('.lb-title');
   var note = dlg.querySelector('.lb-note');
+  var hint = dlg.querySelector('.lb-hint');
+  var scroller = dlg.querySelector('.lb-scroll');
   var btnPrev = dlg.querySelector('.lb-prev');
   var btnNext = dlg.querySelector('.lb-next');
   var btnClose = dlg.querySelector('.lb-close');
@@ -92,6 +94,18 @@
     var thumb = a.querySelector('img');
     img.src = a.getAttribute('href');
     img.alt = thumb ? thumb.alt : '';
+    /* a very wide picture on a narrow screen is shown taller, and slides sideways */
+    var w = thumb ? Number(thumb.getAttribute('width')) : 0;
+    var h = thumb ? Number(thumb.getAttribute('height')) : 0;
+    var wide = w > 0 && h > 0 && w / h > 2 && window.innerWidth < 700 && w > window.innerWidth;
+    dlg.classList.toggle('is-wide', wide);
+    var tall = wide ? Math.round(Math.min(h, window.innerHeight * 0.56)) : 0;
+    img.style.height = wide ? tall + 'px' : '';
+    img.style.width = wide ? Math.round(tall * w / h) + 'px' : '';
+    hint.hidden = !wide;
+    /* data-start says how far in (0 to 1) the interesting part of a wide picture begins */
+    var startAt = parseFloat(a.getAttribute('data-start')) || 0;
+    scroller.scrollLeft = wide ? Math.round(startAt * tall * w / h) : 0;
     title.textContent = a.getAttribute('data-caption') || '';
     var parts = [];
     if (group.length > 1) parts.push((at + 1) + ' of ' + group.length);
@@ -102,8 +116,8 @@
   function open(a) {
     var name = a.getAttribute('data-lightbox');
     group = links.filter(function (l) { return l.getAttribute('data-lightbox') === name; });
+    dlg.showModal();                 // open first: the picture can only be positioned once it is on screen
     show(group.indexOf(a));
-    dlg.showModal();
     doc.documentElement.classList.add('lb-open');
     btnClose.focus();
   }
@@ -144,7 +158,7 @@
     startX = e.touches[0].clientX; startY = e.touches[0].clientY;
   }, { passive: true });
   dlg.addEventListener('touchend', function (e) {
-    if (startX === null || group.length < 2) return;
+    if (startX === null || group.length < 2 || dlg.classList.contains('is-wide')) return;   // a wide picture uses the sideways slide itself
     var dx = e.changedTouches[0].clientX - startX;
     var dy = e.changedTouches[0].clientY - startY;
     startX = null;
